@@ -67,5 +67,12 @@ Clone the repository and run `$ mix test`. To generate docs, run `$ mix docs`.
 
 Saul is released under the ISC license, see the [LICENSE](LICENSE) file.
 
+## Attribution
+
+Many ideas in this library are inspired by [clojure.spec][clojure-spec].
+
+A special thanks for the feedback and encouragement goes to the awesome @lexmag, as well as to @josevalim, @ericmj, and @michalmuskala.
+
 
 [documentation]: https://hexdocs.pm/saul
+[clojure-spec]: https://clojure.org/about/spec
