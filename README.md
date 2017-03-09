@@ -1,5 +1,7 @@
 # Saul
 
+[![Build Status](https://travis-ci.org/whatyouhide/saul.svg?branch=master)](https://travis-ci.org/whatyouhide/saul)
+
 > Data validation and conformation library for Elixir.
 
 ![Cover image](http://i.imgur.com/9DXjXjA.jpg)
