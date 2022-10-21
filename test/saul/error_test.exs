@@ -11,7 +11,7 @@ defmodule Saul.ErrorTest do
 
     error = %Error{
       validator: "map",
-      position: "at key :foo",
+      position: {:key, :foo},
       reason: %Error{
         validator: "map",
         position: nil,

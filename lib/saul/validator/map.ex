@@ -77,7 +77,7 @@ defmodule Saul.Validator.Map do
           {:ok, transformed} ->
             {:cont, {:ok, Map.put(acc, key, transformed)}}
           {:error, %Error{} = error} ->
-            {:halt, {:error, %Error{position: "at key #{inspect(key)}", reason: error}}}
+            {:halt, {:error, %Error{position: {:key, key}, reason: error}}}
         end
       end)
     end

@@ -23,7 +23,7 @@ defmodule Saul.Map do
           {:ok, transformed_value} ->
             {:ok, {transformed_key, transformed_value}}
           {:error, %Error{} = error} ->
-            {:error, %Error{position: "at key #{inspect(key)}", reason: error}}
+            {:error, %Error{position: {:key, key}, reason: error}}
         end
       {:error, %Error{} = error} ->
         {:error, %Error{reason: "invalid key: #{Exception.message(error)}", term: {:term, key}}}

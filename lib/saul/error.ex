@@ -44,11 +44,15 @@ defmodule Saul.Error do
 
     IO.iodata_to_binary([
       if(validator, do: ["(", validator_to_string(validator), ") "], else: []),
-      if(position, do: [position, " -> "], else: []),
+      if(position, do: [position_to_string(position), " -> "], else: []),
       reason,
       case(term, do: ({:term, term} -> [" - failing term: ", inspect(term)]; _ -> []))
     ])
   end
+
+  defp position_to_string(position) when is_binary(position), do: position
+  defp position_to_string({:index, index}) when is_integer(index), do: "at position #{index}"
+  defp position_to_string({:key, key}), do: "at key #{inspect(key)}"
 
   defp validator_to_string(validator) when is_binary(validator), do: validator
   defp validator_to_string(validator), do: inspect(validator)

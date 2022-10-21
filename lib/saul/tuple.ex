@@ -26,7 +26,7 @@ defmodule Saul.Tuple do
       {:ok, transformed} ->
         validate_pairs(rest, validators, [transformed | acc])
       {:error, error} ->
-        {:error, %Error{validator: "tuple", position: "at position #{length(acc)}", reason: error}}
+        {:error, %Error{validator: "tuple", position: {:index, length(acc)}, reason: error}}
     end
   end
 

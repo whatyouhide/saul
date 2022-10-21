@@ -20,7 +20,7 @@ defmodule Saul.Enum do
           {:ok, transformed} ->
             {collectable_cont.(acc, {:cont, transformed}), index + 1}
           {:error, %Error{} = error} ->
-            throw(%Error{position: "at position #{index}", reason: error})
+            throw(%Error{position: {:index, index}, reason: error})
         end
       end)
     catch
