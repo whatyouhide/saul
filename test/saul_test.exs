@@ -21,6 +21,10 @@ defmodule SaulTest do
       assert {:error, %Error{}} = validate(:foo, &is_binary/1)
     end
 
+    test "accepts :error as return value" do
+      assert {:error, %Error{reason: "predicate failed"}} = validate(42, fn _ -> :error end)
+    end
+
     test "fails when a validator doesn't return one of the allowed values" do
       message = "validator should return {:ok, term}, {:error, term}, or a boolean, got: :bad_return"
       assert_raise ArgumentError, message, fn ->
@@ -162,7 +166,7 @@ defmodule SaulTest do
     end
 
     test "always succeeds when given an empty enum" do
-      assert validate([], enum_of(fn _ -> false end)) == {:ok, []}
+    assert validate([], enum_of(fn _ -> false end)) == {:ok, []}
       assert validate(%{}, enum_of(fn _ -> false end, into: %{})) == {:ok, %{}}
     end
 

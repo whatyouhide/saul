@@ -42,6 +42,6 @@ defprotocol Saul.Validator do
   See the module documentation for `Saul` and the documentation for
   `Saul.validate/2` for more information on the possible return values.
   """
-  @spec validate(term, term) :: {:ok, term} | {:error, term} | boolean
+  @spec validate(term, term) :: {:ok, term} | {:error, term} | :error | boolean
   def validate(validator, term)
 end

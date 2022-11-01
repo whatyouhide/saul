@@ -36,13 +36,15 @@ defmodule Saul do
       invalid). `reason` can be any term: if it is not a `Saul.Error` struct,
       `validate/2` will take care of wrapping it into a `Saul.Error`.
 
+    * `:error` - it means validation failed. It is the same as `{:error, reason}`,
+      except the reason only mentions that a "predicate failed".
+
     * `true` - it means validation succeeded. It is the same as `{:ok,
       transformed}`, but it can be used when the transformed value is the same
       as the input value. This is useful for "predicate" validators (functions
       that take one argument and return a boolean).
 
-    * `false` - it means validation failed. It is the same as `{:error, reason}`,
-      except the reason only mentions that a "predicate failed".
+    * `false` - it means validation failed. It is the same as `:error`.
 
   Returning a boolean value is supported so that existing predicate functions
   can be used as validators without modification. Examples of such functions are
@@ -116,7 +118,7 @@ defmodule Saul do
         result
       {:error, reason} ->
         {:error, %Saul.Error{validator: validator, reason: inspect(reason), term: {:term, term}}}
-      false ->
+      failed when failed in [false, :error] ->
         {:error, %Saul.Error{validator: validator, reason: "predicate failed", term: {:term, term}}}
       other ->
         raise ArgumentError, "validator should return {:ok, term}, {:error, term}, " <>
