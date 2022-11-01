@@ -32,10 +32,10 @@ defmodule Saul.Error do
   defexception [:validator, :position, :reason, :term]
 
   @type t :: %__MODULE__{
-    validator: Saul.validator(any()),
+    validator: Saul.validator(any()) | nil,
     position: String.t(),
     reason: t() | String.t(),
-    term: {:term, term()}
+    term: {:term, term()} | nil
   }
 
   def message(%__MODULE__{} = error) do
