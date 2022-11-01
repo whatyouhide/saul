@@ -31,6 +31,13 @@ defmodule Saul.Error do
 
   defexception [:validator, :position, :reason, :term]
 
+  @type t :: %__MODULE__{
+    validator: Saul.validator(any()),
+    position: String.t() | {:index, pos_integer()} | {:key, term()},
+    reason: t() | String.t(),
+    term: {:term, term()}
+  }
+
   def message(%__MODULE__{} = error) do
     %{validator: validator, position: position, reason: reason, term: term} = error
 
