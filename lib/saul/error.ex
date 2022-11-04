@@ -31,15 +31,29 @@ defmodule Saul.Error do
 
   defexception [:validator, :position, :reason, :term]
 
+  @type t :: %__MODULE__{
+    validator: Saul.validator(any()) | nil,
+    position: String.t(),
+    reason: Exception.t() | String.t() | Inspect.t(),
+    term: {:term, term()} | nil
+  }
+
   def message(%__MODULE__{} = error) do
     %{validator: validator, position: position, reason: reason, term: term} = error
 
     reason =
-      case reason do
-        %__MODULE__{} ->
-          message(reason)
+      case error.reason do
+        :predicate_failed ->
+          "predicate failed"
+
+        reason when is_exception(reason) ->
+          Exception.message(reason)
+
         reason when is_binary(reason) ->
-          reason
+          if String.valid?(reason), do: reason, else: inspect(reason)
+
+        _ ->
+          inspect(reason)
       end
 
     IO.iodata_to_binary([

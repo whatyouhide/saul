@@ -42,7 +42,7 @@ defmodule Saul do
       that take one argument and return a boolean).
 
     * `false` - it means validation failed. It is the same as `{:error, reason}`,
-      except the reason only mentions that a "predicate failed".
+      except the reason is `:predicate_failed`.
 
   Returning a boolean value is supported so that existing predicate functions
   can be used as validators without modification. Examples of such functions are
@@ -95,7 +95,7 @@ defmodule Saul do
       iex> failer = fn(_) -> {:error, :bad} end
       iex> {:error, %Saul.Error{} = error} = Saul.validate(3.14, failer)
       iex> error.reason
-      ":bad"
+      :bad
 
   """
   @spec validate(term, validator(value)) ::
@@ -115,9 +115,9 @@ defmodule Saul do
       {:error, %Saul.Error{}} = result ->
         result
       {:error, reason} ->
-        {:error, %Saul.Error{validator: validator, reason: inspect(reason), term: {:term, term}}}
+        {:error, %Saul.Error{validator: validator, reason: reason, term: {:term, term}}}
       false ->
-        {:error, %Saul.Error{validator: validator, reason: "predicate failed", term: {:term, term}}}
+        {:error, %Saul.Error{validator: validator, reason: :predicate_failed, term: {:term, term}}}
       other ->
         raise ArgumentError, "validator should return {:ok, term}, {:error, term}, " <>
                              "or a boolean, got: #{inspect(other)}"

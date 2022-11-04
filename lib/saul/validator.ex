@@ -33,7 +33,7 @@ defprotocol Saul.Validator do
   Note that here we used the `{:ok, _} | {:error, _}` return type for
   `validate/2` in order to give errors a nice error message: we could have
   implemented this validator as just `DateRange.in_range(term, date_range)`, but
-  then the error would have said only something like "predicate failed".
+  then the error would have said only something like :predicate_failed.
   """
 
   @doc """
