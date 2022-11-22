@@ -2,9 +2,9 @@
 
 [![Build Status](https://travis-ci.org/whatyouhide/saul.svg?branch=master)](https://travis-ci.org/whatyouhide/saul)
 
-:warning: This library is **not meant for production** and is **not actively developed** (case in point, it's archived). I started it out years ago, but it never quite went anywhere. Still, I think it's a nice example of a functional library written in Elixir, and I think it can serve an educational purpose for people coming to the language. Enjoy! — Andrea, Nov 2022
+> :warning: This library is **not meant for production** and is **not actively developed** (case in point, it's archived). I started it out years ago, but it never quite went anywhere. Still, I think it's a nice example of a functional library written in Elixir, and I think it can serve an educational purpose for people coming to the language. Enjoy! — Andrea, Nov 2022
 
-> Data validation and conformation library for Elixir.
+Saul is (was) a data validation and conformation library for Elixir.
 
 ![Cover image](http://i.imgur.com/9DXjXjA.jpg)
 
